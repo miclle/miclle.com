@@ -1,0 +1,37 @@
+<% content_for :head do %>
+<style type="text/css">.photograph{background-image:url(<%= @photo.xxlarge -%>)}</style>
+<% end -%>
+
+<div class="photograph">
+
+  <div class="hero-section">
+    <div class="slogan">
+      <h1>记录精彩瞬间 还原真实影像</h1>
+      <h3>上传, 分享, 发现鼓舞人心的照片。</h3>
+    </div>
+    <% if user_signed_in? %>
+      <div class="container text align center">
+        <%= link_to new_photo_path, :class => "ui button green massive upload-your-photo" do %>
+          <i class="icon plus"></i><span>上传照片</span>
+        <% end -%>
+      </div>
+    <% else %>
+      <%= simple_form_for resource, :wrapper => :semantic_ui_no_label, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "segment"} do |f| %>
+        <div class="inline fields">
+          <%= f.input :username, :required => true, :placeholder => "用户名", :input_html => { :class => "popup", "data-content"=> "用户名: 允许字母, 数字和下划线 3～20个字符", :tabindex => 1} %>
+          <%= f.input :email, :required => true, :placeholder => "邮箱", :input_html => { :class => "popup", "data-content"=> "邮箱: 用来找回密码 / 接收通知", :tabindex => 2} %>
+          <%= f.input :password, :required => true, :placeholder => "密码", :input_html => { :class => "popup", "data-content"=> "密码: 8个以上的字符", :tabindex => 3} %>
+          <div class="field">
+            <button type="submit" class="ui button green" tabindex="5">注 册</button>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="photo-details">
+    <h3>
+      <%= link_to @photo.name, @photo %> <br>
+      <small><%= link_to "©#{@photo.user.nickname}", homepage_user_path(@photo.user.username) -%></small>
+    </h3>
+  </div>
+</div>

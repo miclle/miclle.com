@@ -1,0 +1,5 @@
+<div class="row clearfix">
+  <% photos.each do |photo| %>
+  <%= render :partial => "photos/artwork", :locals => { :photo => photo, :style => :large } %>
+  <% end %>
+</div>

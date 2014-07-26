@@ -1,0 +1,50 @@
+<div class="container">
+
+  <div class="subscribe">
+    <div class="subscribe-wrapper">
+      <div class="subscribe-form">
+
+        <div class="stripes top"></div>
+
+        <div class="subscribe-space">
+          <h4><span>重发确认指令</span> <%= link_to raw("<i class=\"home icon\"></i>"), root_path %></h4>
+
+          <%= content_tag :div, raw(notice), :class => "ui red message" unless notice.blank? %>
+
+          <p>已有账户? 直接<%= link_to "登录", new_session_path(resource_name) -%>或<%= link_to "找回密码", new_password_path(resource_name) %> 或<%= link_to "注册", new_registration_path(resource_name) -%>一个新的账户！</p>
+
+          <hr />
+
+          <%= simple_form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post, :class => "no-label" }) do |f| %>
+
+            <%= f.error_notification %>
+
+            <%= f.input :confirmation_token, :input_html => { :disabled => true } %>
+
+            <%#= f.full_error :confirmation_token %>
+
+            <%= f.input :email, :required => true, :autofocus => true, :placeholder => "注册时使用的邮箱" %>
+
+            <%= f.button :submit, "发送确认链接至邮箱" %>
+          <% end %>
+
+
+        </div>
+
+        <div class="stripes bottom"></div>
+      </div>
+
+      <!--
+      <div class="subscribe-success">
+        <div class="subscribe-space">
+          <h4>Thanks!</h4>
+          <p>We can't wait to show you our new design.</p>
+          <p>Meanwhile, you can visit our sister site <b>favbulous</b> for <a href="http://favbulous.com" target="_blank">awesome design inspirations</a>.</p>
+        </div>
+      </div>
+      -->
+
+    </div>
+  </div>
+
+</div>

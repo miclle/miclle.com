@@ -1,0 +1,87 @@
+<div class="ui breadcrumb">
+  <%= link_to "用户", cpanel_users_path, :class => "section" %>
+  <i class="right arrow icon divider"></i>
+  <div class="active section">用户详细信息</div>
+</div>
+
+<div class="ui basic segment">
+  <%= simple_form_for(@user, :url => cpanel_user_path, :html => { :method => :put }) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="ui two column stackable grid">
+      <div class="column">
+        <div class="ui fluid form segment">
+          <h3 class="ui header">基本资料</h3>
+          <%= f.input :username, :required => true, :disabled => true %>
+          <%= f.input :email, :required => true, :disabled => true %>
+          <%= f.input :name, :disabled => true %>
+          <div class="field">
+            <label>性别</label>
+            <div class="ui selection dropdown">
+              <%= f.hidden_field :gender %>
+              <div class="default text">性别</div>
+              <i class="dropdown icon"></i>
+              <div class="menu ui transition hidden">
+                <div class="item" data-value="male"><i class="male icon"></i>男性</div>
+                <div class="item" data-value="female"><i class="female icon"></i>女性</div>
+              </div>
+            </div>
+          </div>
+          <%= f.input :city %>
+          <%= f.input :bio, :as => :text, :input_html => { :class => :medium } %>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="ui fluid form segment">
+          <h3 class="ui header">社交信息</h3>
+          <div class="field">
+            <%= image_tag(@user.avatar.url(:medium), :class => "rounded ui image avatar") %>
+            <%= f.file_field :avatar, :class => "avatar" %>
+          </div>
+          <%= f.input :website %>
+          <%= f.input :weibo %>
+          <%= f.input :twitter %>
+          <%= f.input :qq %>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui section divider"></div>
+
+    <div class="ui two column stackable grid">
+      <div class="column">
+        <div class="ui fluid form segment">
+          <h3 class="ui header">身份角色</h3>
+          <div class="field">
+            <div class="ui selection dropdown">
+              <%= f.hidden_field :role %>
+              <div class="default text">角色</div>
+              <i class="dropdown icon"></i>
+              <div class="menu ui transition hidden">
+                <div class="item" data-value="admin">管理员</div>
+                <div class="item" data-value="editor">编辑</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="ui fluid form segment">
+          <h3 class="ui header">其它信息</h3>
+          <p>照片: <%= @user.photos.count %></p>
+          <p>注册时间: <%= datetime_format @user.created_at %></p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="ui section divider"></div>
+
+    <div class="ui grid center aligned">
+      <%= f.button :submit, "更新资料" %>
+    </div>
+
+  <% end %>
+</div>

@@ -1,0 +1,2 @@
+$('#follow-<%= @user.id -%>').replaceWith("<%= escape_javascript(render('users/shared/follow', :user => @user)) -%>");
+$('#followers-<%= @user.id -%>-count').text('<%= @user.followers.count -%>');

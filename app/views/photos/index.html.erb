@@ -1,0 +1,9 @@
+<div class="container clearfix">
+  <div class="gallery clearfix">
+    <% @photos.each do |photo| %>
+      <%= link_to image_tag("grey.gif", :alt => photo.name, :lazyload => 'lazyload', "data-original" => photo.small), photo, :class => "photo grid item" %>
+    <% end -%>
+  </div>
+
+  <%= paginate @photos %>
+</div>

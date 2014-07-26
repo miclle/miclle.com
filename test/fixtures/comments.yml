@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  entity_type: MyString
+  entity_id: 1
+  content: MyText
+  deleted_at: 2013-10-01 00:15:00
+  reason: MyText
+
+two:
+  user_id: 1
+  entity_type: MyString
+  entity_id: 1
+  content: MyText
+  deleted_at: 2013-10-01 00:15:00
+  reason: MyText

@@ -1,0 +1,44 @@
+<div class="container">
+
+  <div class="subscribe">
+    <div class="subscribe-wrapper">
+      <div class="subscribe-form">
+
+        <div class="stripes top"></div>
+
+        <div class="subscribe-space">
+          <h4><span>账户登录</span> <%= link_to raw("<i class=\"home icon\"></i>"), root_path %></h4>
+
+          <p>
+            还不是miclle.com的用户吗？<%= link_to "注册", new_registration_path(resource_name) %>成为我们的成员！ <br />
+            忘记密码了？没关系，点击<%= link_to "找回密码", new_password_path(resource_name) %>。
+          </p>
+
+          <hr />
+
+          <%= simple_form_for resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "no-label"} do |f| %>
+
+            <%= f.input :login, :required => false, :autofocus => true, :placeholder => "用户名 / 邮箱", :input_html => { :tabindex => 1} %>
+
+            <%= f.input :password, :required => false, :placeholder => "密码", :input_html => { :tabindex => 2} %>
+
+            <% if false #if devise_mapping.rememberable? %>
+            <div class="field">
+              <div class="ui checkbox">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            </div>
+            <% end %>
+
+            <%= f.button :submit, "登 录", :class => "submit", :data => {"disable-with" => "正在登录..."}, :tabindex => 4 %>
+          <% end %>
+        </div>
+
+        <div class="stripes bottom"></div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

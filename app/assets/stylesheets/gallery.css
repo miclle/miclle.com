@@ -1,0 +1,258 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require semantic-ui
+ *= require_self
+ */
+
+html,
+body {
+  font-size: 14px;
+}
+
+body{
+  font-family: "Open Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  background: #FCFCFC;
+  margin: 0;
+  padding:0;
+  color: #555555;
+  text-rendering: optimizeLegibility;
+  min-width: 320px;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+body {
+  background:#212121;
+  overflow:hidden;
+  font-family:Arial, Helvetica, sans-serif;
+  /*text-transform:uppercase;*/
+  color:#fff;
+  font-size:10px;
+}
+
+/* clearfix */
+.clearfix {
+  display: block;
+}
+.clearfix:before, .clearfix:after{
+  content:" ";
+  display:table
+}
+.clearfix:after{
+  clear:both
+}
+
+/* menu */
+nav.ui.inverted.fixed.menu{
+  font-size: 14px;
+  margin-bottom: 0;
+  background-color: #111;
+  background-color: rgba(0, 0, 0, 0.6);
+  background: asset_url('iefallbacktrans.png') repeat scroll \6;
+  top: 0;
+  /*text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);*/
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+nav.ui.inverted.menu .item:before {
+  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.01) 100%);
+  background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.01) 100%);
+  background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.01) 100%);
+  background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.01) 100%);
+  background-image: linear-gradient(top, rgba(255, 255, 255, 0.01) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.01) 100%);
+}
+
+footer{
+  width: 100%;
+  color: #FFF;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+  opacity: 0.7;
+}
+footer a{
+  color: #FFF;
+}
+
+.fp-gallery{
+  text-align: center;
+}
+
+#outer-container{
+  position:fixed;
+  z-index: 3;
+  bottom:-160px;  /*-160px to hide*/
+  margin:0px 0px 30px 0px;
+  height:130px;
+  padding:0;
+  -webkit-box-reflect:
+    below 5px -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      from(transparent),
+      color-stop(0.6, transparent),
+      to(rgb(18, 18, 18))
+    );
+  z-index: 5;
+}
+#thumbScroller{
+  position:relative;
+  overflow:hidden;
+}
+#thumbScroller .container{
+  position:relative;
+  left:0;
+}
+#thumbScroller .content{
+  float:left;
+}
+#thumbScroller .content div{
+  margin:2px;
+  height:100%;
+}
+#thumbScroller img,
+img.clone{
+  border:5px solid #fff;
+  height:120px;
+}
+#thumbScroller a{
+  padding:2px;
+  outline:none;
+}
+.fp-overlay{
+  width:100%;
+  height:100%;
+  position:fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:transparent asset_url('pattern2.png') repeat-x bottom left;
+  opacity: .5;
+  z-index: 4;
+}
+.fp-loading{
+  display:none;
+  position:fixed;
+  top:50%;
+  left:50%;
+  margin:-35px 0px 0px -35px;
+  background:#000 asset_url('loader.gif') no-repeat center center;
+  width:70px;
+  height:70px;
+  -moz-border-radius:10px;
+  -webkit-border-radius:10px;
+  border-radius:10px;
+  z-index:999;
+  opacity:0.7;
+}
+.fp-next,
+.fp-prev{
+  width:50px;
+  height:50px;
+  position:fixed;
+  top:50%;
+  margin-top:-15px;
+  cursor:pointer;
+  opacity:0.5;
+  z-index: 6;
+}
+.fp-next:hover,
+.fp-prev:hover{
+  opacity:0.9;
+}
+.fp-next{
+  right:-50px;
+  background:#000 asset_url('next.png') no-repeat center center;
+}
+.fp-prev{
+  left: -50px;
+  background:#000 asset_url('prev.png') no-repeat center center;
+}
+
+.fp-thumbtoggle{
+  width: 200px;
+  height: 30px;
+  line-height: 14px;
+  padding: 10px 0 0 0;
+  background: #000;
+  text-align:center;
+  letter-spacing:1px;
+  text-shadow:1px 1px 1px #000;
+  position:fixed;
+  left:50%;
+  bottom: -40px;
+  margin-left:-100px;
+  cursor:pointer;
+  opacity: 0.6;
+  font-size: 14px;
+  font-weight: 500;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-top-left-radius: 5px;
+  -moz-border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  z-index: 6;
+}
+.fp-thumbtoggle:hover{ opacity: .8; }
+
+.copyright{
+  color: #555;
+  font-size: 10px;
+}
+
+img.fp-preview{
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:100%;
+}
+
+h1.title{
+  margin-top: 30px;
+  padding: 6px 10px;
+  position: fixed;
+  top: 50px;
+  left: 10px;
+  z-index: 2;
+  color: #CCC;
+  background: rgba(0,0,0,0.5);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#photocopy{
+  margin: 20px 22px;
+  padding: 3px 8px;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  color: #CCC;
+  background: rgba(0,0,0,0.5);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  text-transform:uppercase;
+}
+
+a.pager{
+  color: #FFF;
+  font-size: 20px;
+}

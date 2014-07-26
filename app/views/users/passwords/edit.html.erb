@@ -1,0 +1,40 @@
+<div class="container">
+
+  <div class="subscribe">
+    <div class="subscribe-wrapper">
+      <div class="subscribe-form">
+
+        <div class="stripes top"></div>
+
+        <div class="subscribe-space">
+          <h4><span>修改密码</span> <%= link_to raw("<i class=\"home icon\"></i>"), root_path %></h4>
+
+          <p>想起密码了,直接<%= link_to "登录", new_session_path(resource_name) -%> 或 <%= link_to "注册", new_registration_path(resource_name) -%>一个新的账户！</p>
+
+          <hr />
+
+          <%= simple_form_for(resource, :wrapper => :semantic_ui_no_label, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+
+            <%= f.error_notification %>
+
+            <%= f.input :reset_password_token, :as => :hidden %>
+
+            <%#= f.full_error :reset_password_token %>
+
+            <%= f.input :password, :required => true, :placeholder => "密码，8个以上的字符", :input_html => { :tabindex => 1}, :autofocus => true %>
+
+            <%= f.input :password_confirmation, :required => true, :placeholder => "重复上面的密码", :input_html => { :tabindex => 2} %>
+
+            <%= f.button :submit, "修改密码" %>
+
+          <% end %>
+
+        </div>
+
+        <div class="stripes bottom"></div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

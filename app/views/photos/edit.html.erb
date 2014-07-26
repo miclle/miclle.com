@@ -1,0 +1,131 @@
+<% content_for :footer do %>
+  <!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyABtlG981opYvGjGse0RJOS3xIgNnNY30c&libraries=places&sensor=true"></script> -->
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
+  <%= javascript_include_tag "upload" %>
+<% end -%>
+
+
+<%= simple_form_for(@photo, :html => {:id => "photo-edit-form"}) do |f| %>
+
+  <%= f.error_notification %>
+
+  <%= content_tag :div, image_tag(@photo.xlarge, :alt => @photo.name, :class => "image"), :class => "tube" %>
+
+  <div id="fileupload-buttonbar" class="container clearfix">
+    <span class="ui green label" id="photo-size"></span>
+
+    <div class="ui label">原图尺寸:<div class="detail"><%= @photo.width %> &times; <%= @photo.height %> (px)</div></div>
+
+    <div class="buttons">
+      <%= link_to photo_path(@photo), :method => :delete, :class => "ui button medium", :data => {:confirm => '亲～ 真的要删除么？', "disable-with" => "正在删除..."} do %>
+        <i class="icon remove"></i><span>删除照片</span>
+      <% end %>
+
+      <button type="submit" class="ui button medium blue" id="start-button" data-disable-with="正在上传...">
+        <i class="icon cloud upload"></i><span>保存更改</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="ui grid details">
+
+      <div class="four wide column">
+
+        <%= f.input :name, :label => "标题" %>
+
+        <%= f.input :camera, :label => "相机型号", :input_html => {:class => "exif", :placeholder => "eg. Canon EOS 5D Mark III"} %>
+
+        <%= f.input :taken_at, :as => :string, :label => "时间", :input_html => {:class => "exif", :placeholder => "yyyy-mm-dd hh:mm:ss", :value => datetime_format(@photo.taken_at, :second => true)} %>
+
+        <div class="ui two fields">
+          <%= f.input :exposure_time, :label => "曝光时间", :wrapper_html => { :class => "inline"}, :input_html => {:class => "exif", :placeholder => "eg. 1/30"} %>
+          <%= f.input :aperture, :label => "光圈", :wrapper_html => { :class => "inline"}, :input_html => {:class => "exif", :placeholder => "eg. 11"} %>
+        </div>
+
+        <div class="ui two fields">
+          <%= f.input :iso, :label => "ISO", :wrapper_html => { :class => "inline"}, :input_html => {:class => "exif", :placeholder => "eg. 200"} %>
+          <%= f.input :focal_length, :label => "焦距", :wrapper_html => { :class => "inline"}, :input_html => {:class => "exif", :placeholder => "eg. 17"} %>
+        </div>
+
+        <div class="field photo-place">
+          <label>摄影集</label>
+          <div class="ui left labeled icon select">
+            <%= f.select :album_id, current_user.albums.map { |a| [a.name, a.id] } + [['创建影集','add-set']], { include_blank: "选择一个影集" }, :id => "photo-set" %>
+            <i class="icon sort"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="six wide column">
+
+        <%= f.input :description, :label => "描述", :input_html => {:class => "exif", :placeholder => "eg. 描述"} %>
+
+        <div class="field">
+          <label>分类</label>
+          <div class="ui left labeled icon select">
+            <%= f.select :category, Photo::CATEGORY_INVERT %>
+            <i class="icon sort"></i>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>版权</label>
+          <div class="ui left labeled icon select">
+            <%= f.select :license, Photo::LICENSE_INVERT %>
+            <i class="icon sort"></i>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>隐私</label>
+          <div class="ui left labeled icon select">
+            <i class="icon sort"></i>
+            <%= f.select :privacy, Photo::PRIVACY_INVERT %>
+          </div>
+        </div>
+
+        <%= f.input :tag_list, :label => "标签", :input_html => {:id => "photo-tags"} %>
+      </div>
+
+      <div class="six wide column">
+        <div class="field map">
+          <label>地图</label>
+          <%= f.hidden_field :latitude,  :class => "exif" %>
+          <%= f.hidden_field :longitude, :class => "exif" %>
+          <div class="map-wrapper disabled-map" id="map"></div>
+        </div>
+
+        <div class="field">
+          <div class="ui checkbox">
+            <%= f.check_box :is_adult_content %>
+            <%= f.label :is_adult_content do %>
+            <span>成人内容</span> <small>(将不会出现在公共页面中)</small>
+            <% end -%>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+<% end %>
+
+
+<%= simple_form_for Album.new, :remote => true, :html => {:class => "small modal", :id => "add-photo-set"} do |f| %>
+  <div class="header">新建摄影集</div>
+  <div class="content">
+    <%= f.error_notification %>
+    <%= f.input :name %>
+    <%= f.input :description, :input_html => { :rows => 3} %>
+  </div>
+
+  <div class="actions">
+    <div class="ui button">取 消</div>
+    <button type="submit" class="ui positive right labeled icon button">
+      创 建<i class="checkmark icon"></i>
+    </button>
+  </div>
+<% end %>
+

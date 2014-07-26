@@ -1,0 +1,62 @@
+# config/config.yml
+defaults: &defaults
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+  app_name: "Miclle 美摄图志"
+  username_exclusion:
+    - editor
+    - editors
+    - admin
+    - administrator
+    - cpanel
+    - photo
+    - photos
+    - recents
+    - account
+    - accounts
+    - user
+    - users
+    - '403'
+    - '404'
+    - '422'
+    - '500'
+
+  qiniu_access_key: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+  qiniu_secret_key: 'xxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
+  photo_bucket: 'miclle'
+  cdn_domain:   'http://cdn.miclle.com'
+  # cdn_domain:   'miclle.u.qiniudn.com'
+
+  private_bucket: 'miclle-private'
+  private_cdn_domain:   'http://ppcdn.miclle.com'
+  # private_cdn_domain:   'http://miclle-private.qiniudn.com'
+
+  static_bucket: 'miclle-static'
+  static_cdn_domain: 'http://static.miclle.com'
+  # static_cdn_domain: 'http://miclle-static.qiniudn.com'
+
+  photo:
+    versions:
+      thumb:   'thumb'  # width: 50px,   height: 50px
+      xsmall:  'xsmall' # width: 140px,  height: 140px
+      small:   'small'  # width: 280px,  height: 280px
+      medium:  'medium' # width: 440px,  height: 440px
+      large:   'large'  # width: 600px,  height: 600px
+      xlarge:  'xlarge' # width: 1200px, height: 1200px
+      xxlarge: 'xxlarge'  # width: 1920px
+
+  exception_recipients:
+    - miclle.zheng@gmail.com
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

@@ -1,0 +1,5 @@
+$('<%= "##{@comment.entity_type.downcase}-#{@comment.entity_id}-comment-form" -%>').after('<%=j render @comment %>').find('textarea').val('');
+
+$('time[data-time-ago]').each(function() {
+  $(this).timeago();
+});

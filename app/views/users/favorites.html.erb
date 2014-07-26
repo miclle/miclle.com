@@ -1,0 +1,22 @@
+<div class="container clearfix">
+  <%= render 'users/shared/profile_vcard' %>
+
+  <%= render 'users/shared/tabs' %>
+
+  <div class="gallery">
+    <% @photos.each do |photo| %>
+      <div class="artwork small">
+        <a class="red like ui corner label"><i class="like icon"></i></a>
+        <%= link_to image_tag(photo.small, :alt => photo.name), photo, :class => "preview" %>
+        <div class="extra">
+          <div class="caption"><%= photo.name %></div>
+          <div class="timeago"><%= timeago_tag photo.created_at, :format => 'zh-CN', :lang => 'zh-CN', :title => photo.created_at %></div>
+        </div>
+      </div>
+    <% end -%>
+
+  </div>
+
+  <%= paginate @photos %>
+
+</div>

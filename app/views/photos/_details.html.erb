@@ -1,0 +1,150 @@
+<script id="template-details" type="text/x-tmpl">
+{% var file = o; %}
+
+  <div class="ui form grid details" data-uuid="{%= file.uuid %}">
+
+    <div class="five wide column">
+      <div class="field photo-title">
+        <label>标题</label>
+        <input type="text" class="ui input photo-name" name="photo[name]" value="{%= file.name %}">
+      </div>
+
+      <div class="field">
+        <label>相机型号</label>
+        <input type="text" class="ui input photo-taken-at" name="photo[camera]" value="{%= file.camera %}">
+      </div>
+
+      <div class="field">
+        <label>时间</label>
+        <input type="text" class="ui input photo-taken-at" name="photo[taken_at]" placeholder="Set Date (yyyy-mm-dd hh:mm:ss)" value="{%= file.taken_at %}">
+      </div>
+
+      <div class="ui two fields">
+        <div class="inline field">
+          <label>曝光时间</label>
+          <input type="text" class="ui input photo-taken-at" name="photo[exposure_time]" placeholder="1/30" value="{%= file.exposure_time %}">
+        </div>
+
+        <div class="inline field">
+          <label>光圈</label>
+          <input type="text" class="ui input photo-taken-at" name="photo[aperture]" value="{%= file.aperture %}">
+        </div>
+      </div>
+
+      <div class="ui two fields">
+        <div class="inline field">
+          <label>ISO</label>
+          <input type="text" class="ui input photo-taken-at" name="photo[iso]" value="{%= file.iso %}">
+        </div>
+
+        <div class="inline field">
+          <label>焦距</label>
+          <input type="text" class="ui input photo-taken-at" name="photo[focal_length]" value="{%= file.focal_length %}">
+        </div>
+      </div>
+
+      <div class="field photo-place">
+        <label>相册</label>
+        <select class="ui select photo-album-id" name="photo[album_id]">
+          <option value="10">Abstract - 抽象</option>
+          <option value="11">Animals - 动物</option>
+          <option value="5">Black and White - 黑与白</option>
+          <option value="1">Celebrities - 名人</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="six wide column">
+
+      <div class="field description">
+        <label>描述</label>
+        <textarea class="ui textarea photo-description" cols="55" name="photo[description]" placeholder="描述"></textarea>
+      </div>
+
+      <div class="field photo-category">
+        <label>分类</label>
+        <select class="ui select photo-category" name="photo[category]">
+          <option value="10">Abstract - 抽象</option>
+          <option value="11">Animals - 动物</option>
+          <option value="5">Black and White - 黑与白</option>
+          <option value="1">Celebrities - 名人</option>
+          <option value="9">City &amp; Architecture - 城市建筑</option>
+          <option value="15">Commercial - 广告</option>
+          <option value="16">Concert - 音乐会</option>
+          <option value="20">Family - 家庭</option>
+          <option value="14">Fashion - 时尚</option>
+          <option value="2">Film - 电影</option>
+          <option value="24">Fine Art - 美术</option>
+          <option value="23">Food - 食物</option>
+          <option value="3">Journalism - 新闻学</option>
+          <option value="8">Landscapes - 景观</option>
+          <option value="12">Macro - 巨大的</option>
+          <option value="18">Nature - 性质</option>
+          <option value="4">Nude - 裸体</option>
+          <option value="7">People - 人</option>
+          <option value="19">Performing Arts - 表演艺术</option>
+          <option value="17">Sport - 运动</option>
+          <option value="6">Still Life - 静物</option>
+          <option value="21">Street - 街头</option>
+          <option value="26">Transportation - 运输</option>
+          <option value="13">Travel - 旅行</option>
+          <option value="22">Underwater - 水下</option>
+          <option value="27">Urban Exploration - 城市探险</option>
+          <option value="25">Wedding - 婚礼</option>
+          <option value="0">Uncategorized - 未分类</option>
+        </select>
+      </div>
+
+      <div class="field license">
+        <label>版权</label>
+        <select class="ui select photo-license-type" name="photo[license]">
+          <option value="0">不授权（版权所有 不得转载）</option>
+          <option value="4">署名-非商用-授权分享</option>
+          <option value="5">署名-非商用</option>
+          <option value="6">署名-非商用-禁止修改</option>
+          <option value="1">署名</option>
+          <option value="2">署名-授权分享</option>
+          <option value="3">署名-禁止修改</option>
+        </select>
+      </div>
+
+      <div class="field tags">
+        <label>标签</label>
+        <input name="photo[tags]" placeholder="Tag to make your photo easier to find..." type="text">
+      </div>
+
+    </div>
+
+    <div class="five wide column">
+
+      <div class="ui buttons">
+        <div class="ui button"><i class="remove icon"></i>删除</div>
+        <div class="or"></div>
+        <div class="ui positive button">保存 & 继续</div>
+      </div>
+
+      <div class="map">
+        <input type="hidden" class="photo-latitude" name="photo[latitude]" disabled="disabled" value="{%= file.latitude %}">
+        <input type="hidden" class="photo-longitude" name="photo[longitude]" disabled="disabled" value="{%= file.longitude %}">
+        <div class="map-wrapper">
+          <div class="maplet disabled-map-image"></div>
+        </div>
+      </div>
+
+      <div class="ui two inline fields">
+        <div class="inline field place-photo">
+          <label>隐私</label>
+          <input class="checkbox on-off photo-privacy" name="photo[privacy]" type="checkbox">
+        </div>
+
+        <div class="inline field adultcontent">
+          <label>成人内容</label>
+          <input class="checkbox on-off photo-adult" name="photo[is_adult_content]" type="checkbox">
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</script>

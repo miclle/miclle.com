@@ -1,0 +1,19 @@
+<div class="comment" id="comment-<%= comment.id -%>">
+  <%= link_to image_tag(comment.user.avatar.url(:thumb), :alt => comment.user.nickname, :class => "rounded ui image"), homepage_user_path(comment.user.username), :class => "avatar" %>
+  <div class="content">
+    <%= link_to comment.user.name, homepage_user_path(comment.user.username), :class => "author" %>
+    <div class="metadata">
+      <div class="date"><%= timeago_tag comment.created_at, :format => 'zh-CN', :lang => 'zh-CN' %></div>
+    </div>
+    <div class="text"><%= comment.content %></div>
+    <div class="actions">
+      <!-- <a class="reply">Reply</a> -->
+      <%#= link_to "删除",
+        comment_path(comment),
+        :method => :delete,
+        :remote => true,
+        :data => {:disable_with => "正在删除..."},
+        :class => "delete" if comment.belong?(current_user) %>
+    </div>
+  </div>
+</div>

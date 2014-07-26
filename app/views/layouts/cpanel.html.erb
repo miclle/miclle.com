@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Miclle</title>
+  <%= csrf_meta_tags %>
+  <meta charset="UTF-8" />
+  <%= stylesheet_link_tag "cpanel", media: "all" %>
+  <%= yield :head %>
+</head>
+<body class="<%= "#{controller_name}-#{action_name}" -%> pushed left">
+
+  <nav class="ui fixed transparent inverted menu">
+    <div class="left menu">
+      <%= link_to icon(:reorder, :layout), "#sidebar", :class => "ui black left attached item" %>
+      <%= link_to icon(:home), root_path, :class => "item" %>
+    </div>
+
+    <div class="right menu">
+      <div class="ui dropdown item">
+        <i class="icon user"></i><%= current_user.nickname -%><i class="icon dropdown"></i>
+        <div class="menu">
+          <%= link_to icon(:photo)+"所有照片", homepage_user_path(current_user.username), :data => {:theme => "shaded"}, :class => "item" %>
+          <%= link_to icon(:settings)+"账户设定", account_path, :data => {:theme => "shaded"}, :class => "item" %>
+          <%= link_to icon(:sign,:out)+"退出", destroy_user_session_path, :data => { :disable_with => "正在退出...", :theme => "shaded"}, :class => "item" %>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="sidebar" class="ui thin sidebar active">
+    <div class="ui vertical menu inverted">
+      <%= link_to "MICLLE.COM ADMIN", cpanel_root_path, :class => "item" %>
+    </div>
+
+    <ul id="sidemenu" class="sdmenu ui vertical menu">
+
+      <li class="item">
+        <span class="header item">用户 <i class="icon users"></i></span>
+        <div>
+          <%= link_to "所有用户", cpanel_users_path, :class => "item" %>
+        </div>
+      </li>
+
+      <li class="item">
+        <span class="header item">照片 <i class="icon photo"></i></span>
+        <div>
+          <%= link_to "所有照片", cpanel_photos_path, :class => "item" %>
+        </div>
+      </li>
+
+      <li class="item">
+        <span class="header item">评论 <i class="icon comment"></i></span>
+        <div>
+          <%= link_to "所有评论", cpanel_comments_path, :class => "item" %>
+        </div>
+      </li>
+
+      <li class="item">
+        <span class="header item">队列 <i class="icon list"></i></span>
+        <div>
+          <%= link_to "Sidekiq Web", cpanel_sidekiq_web_path, :class => "item", :target => "_blank" %>
+        </div>
+      </li>
+    </ul>
+
+    <div id="sidemenu-options">
+      <p>菜单选项</p>
+      <p>
+        <input type="button" class="ui mini button" id="expand-all" value="全展开" />
+        <input type="button" class="ui mini button" id="collapse-all" value="全收起" />
+      </p>
+      <div class="form-inline">
+        <div class="checkbox">
+          <label>
+            <input id="one-menu-only" type="checkbox" /> 单项
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="main">
+    <%= yield %>
+  </section>
+
+  <%= javascript_include_tag "cpanel" %>
+
+  <%= yield :footer %>
+</body>
+</html>

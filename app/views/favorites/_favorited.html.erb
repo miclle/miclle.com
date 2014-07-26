@@ -1,0 +1,5 @@
+<% favorites = favoriteable.favorite_users.count -%>
+
+<%= link_to favorite_path(favoriteable.class.to_s.downcase, favoriteable.id), :class => "ui mini button", :remote => true, :method => :delete, :id => "favorite-button" do %>
+  <i class="red heart icon"></i>收藏 <%= favorites if favorites > 0 %>
+<% end %>

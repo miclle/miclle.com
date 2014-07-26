@@ -1,0 +1,80 @@
+<div class="ui three column grid">
+
+  <div class="column">
+    <div class="ui segment">
+      <div class="ui icon blue message">
+        <i class="users icon"></i>
+        <div class="content">
+          <div class="header"><%= User.count %></div>
+          <p>总用户数</p>
+        </div>
+      </div>
+
+      <table class="ui basic table">
+        <tbody>
+          <tr>
+            <td>今日新增：</td>
+            <td><%= User.today.size %></td>
+          </tr>
+          <tr>
+            <td>管理员：</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <div class="column">
+    <div class="ui segment">
+      <div class="ui icon blue message">
+        <i class="photo icon"></i>
+        <div class="content">
+          <div class="header"><%= Photo.count %></div>
+          <p>总照片数</p>
+        </div>
+      </div>
+
+      <table class="ui basic table">
+        <tbody>
+          <tr>
+            <td>今日新增：</td>
+            <td><%= Photo.today.size %></td>
+          </tr>
+          <tr>
+            <td>未审核：</td>
+            <td><%= Photo.unaudited.count %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <div class="column">
+    <div class="ui segment">
+      <div class="ui icon blue message">
+        <i class="comment icon"></i>
+        <div class="content">
+          <div class="header"><%= Comment.count %></div>
+          <p>总评论数</p>
+        </div>
+      </div>
+
+      <table class="ui basic table">
+        <tbody>
+          <tr>
+            <td>今日新增：</td>
+            <td><%= Comment.today.size %></td>
+          </tr>
+          <tr>
+            <td>未审核：</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

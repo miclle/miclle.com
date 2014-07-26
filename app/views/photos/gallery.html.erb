@@ -1,0 +1,47 @@
+<h1 id="title" class="title"><%= @photos.first.name -%></h1>
+
+<h2 id="photocopy">&copy;<span id="photographer"><%= @photos.first.user.username -%></span></h2>
+
+<div id="fp_gallery" class="fp-gallery gallery">
+
+  <%= image_tag @photos.first.image, :id => "fp-preview", :class => "fp-preview", :alt => @photos.first.name, "data-src" => @photos.first.image %>
+
+  <div class="fp-overlay"></div>
+
+  <div id="fp_loading" class="fp-loading"></div>
+
+  <div id="fp_next" class="fp-next"></div>
+
+  <div id="fp_prev" class="fp-prev"></div>
+
+  <div id="outer-container">
+    <div id="thumbScroller">
+      <div class="container">
+        <% @photos.each do |photo| %>
+        <div class="content">
+          <div>
+            <%= link_to image_tag(photo.small,
+                                  :class  => "thumb",
+                                  :alt    => photo.name,
+                                  :data   => {
+                                    :src          => photo.xlarge.url,
+                                    :photographer => photo.user.username
+                                  }), photo %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div id="fp_thumbtoggle" class="fp-thumbtoggle">
+    其它照片 <br>
+    <span class="copyright">Copyright &copy; 2013 miclle.com</span>
+  </div>
+
+</div>
+
+
+<%#= link_to_previous_page @photos, 'Prev Page', :class => "pager prev", :remote => true %>
+<%#= link_to_next_page @photos, 'Next Page', :class => "pager next", :remote => true %>
+<%#= paginate @photos, :remote => true %>

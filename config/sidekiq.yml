@@ -1,0 +1,23 @@
+# Options here can still be overridden by cmd line args.
+#   sidekiq -C sidekiq.yml
+---
+:verbose: false
+:concurrency: 5
+:queues:
+  - [default, 2]
+  - [mailer, 3]
+
+
+# :verbose: false
+# :pidfile: ./tmp/pids/sidekiq.pid
+# :logfile: ./log/sidekiq.log
+# :queues:
+#   - [phoenix_job,7]
+#   - [default, 2]
+
+# staging:
+#   :concurrency: 5
+# development:
+#   :concurrency: 5
+# production:
+#   :concurrency: 50

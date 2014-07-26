@@ -1,0 +1,46 @@
+'zh-CN':
+
+  simple_form:
+
+    error_notification:
+      default_message: "请仔细阅读下面的问题："
+
+    buttons:
+      create_route: '添加路线'
+
+    labels:
+      user:
+        username: '用户名'
+        email: '电子邮箱'
+        name: '昵称'
+        password: '密码'
+        password_old: '旧密码'
+        password_confirmation: '确认密码'
+        invitation_code: '邀请码'
+        remember_me: '记住我'
+        gender: '性别'
+        city: '城市'
+        bio:  '个人简介'
+        website:  '网站/博客'
+        weibo:  '微博'
+        twitter:  'Twitter'
+        qq: 'QQ'
+      album:
+        name: '名称'
+        description: '描述'
+
+    hints:
+      user:
+        username: '数字、大小写字母和下划线'
+        password: '8个以上的字符'
+        invitation_code: '(选填)'
+
+    placeholders:
+      user:
+        username: '用来登录'
+        email:    'E-mail 用来登录/找回密码'
+        password: '8个以上的字符'
+        password_old: '我们需要你当前的密码，以确认是你本人修改'
+        invitation_code: '选填'
+        #weibo:  'http://weibo.com/weibo'
+        #twitter:    'https://twitter.com/twitter'

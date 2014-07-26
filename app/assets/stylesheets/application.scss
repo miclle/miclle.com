@@ -1,0 +1,109 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require semantic-ui
+ *= require semantic-ui-patch
+ *= require thumbcarousel
+ *= require jquery.tagsinput
+ *= require welcome
+ *= require photos
+ *= require social-share-button
+
+ *= require_self
+ */
+
+footer{
+  text-align: center;
+  padding-bottom: 10px;
+  margin-top: 50px;
+  .link.list {
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.gallery{}
+
+.vcard{
+  .avatar{
+    float: left;
+    width: 80px;
+    height: 80px;
+    margin: 0 12px 0 5px;
+  }
+  h2{
+    margin: 0; font-size: 20px; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    a{color: #333;}
+  }
+  .details{
+    height: 15px; overflow: hidden; margin: 5px 0; padding: 0;
+    li{ float: left; list-style: none; margin-right: 10px;}
+    a{ color: #666;}
+    a:hover{ color: #009FDA}
+  }
+  .ui.divided.horizontal.list{
+    .item{
+      padding: 0 5px; margin-top: 5px;
+      .description{ font-size: 10px;}
+    }
+  }
+}
+
+.vcard.profile{
+  &.combo{
+    .avatar{
+      width: 48px;
+      height: 48px;
+    }
+    .details{
+      margin: 5px 0;
+    }
+  }
+  .avatar{
+    float: left;
+    width: 100px;
+    height: 100px;
+    margin: 0 12px 0 10px;
+  }
+  h2{
+    margin: 0; font-size: 22px; font-weight: 500;
+    a{color: #333;}
+  }
+  .details{
+    height: auto; overflow: hidden; margin: 15px 0; padding: 0;
+    li{ float: left; list-style: none; margin-right: 10px;}
+    a{ color: #666;}
+    a:hover{ color: #009FDA}
+  }
+  .follow.prompt{
+  }
+}
+
+.vcard.mini{
+  height: 50px;
+  .avatar{width: 50px; height: 50px; margin: 0 8px 0 0;}
+  h2{ margin-left: 60px; line-height: 30px;}
+  h3{
+    margin: 0 0 0 60px;
+    a{ margin-right: 5px;}
+    .ui.mini.button{
+      padding: 4px 5px;
+    }
+  }
+}
+
+.photo.grid.item{
+  display: inline-block;
+  float: left;
+  img{
+    width: 236px;
+    margin: 0 2px 2px 2px;
+  }
+}

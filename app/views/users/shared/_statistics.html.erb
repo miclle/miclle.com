@@ -1,0 +1,26 @@
+<div class="ui relaxed horizontal divided list">
+  <!-- <div class="item">
+    <div class="content">
+      <%= content_tag :div, user.likes.count, :class => "header", :id => "likes-#{user.id}-count" -%>
+      <div class="description"><i class="thumbs up outline icon"></i> 赞</div>
+    </div>
+  </div> -->
+  <div class="item">
+    <div class="content">
+      <%= link_to user.favorites.count, favorites_user_path(user.username), :class => "header", :id => "favorites-#{user.id}-count" -%>
+      <div class="description"><i class="heart empty icon"></i>收藏</div>
+    </div>
+  </div>
+  <div class="item">
+    <div class="content">
+      <%= link_to user.followers.count, followers_user_path(user.username), :class => "header", :id => "followers-#{user.id}-count" -%>
+      <div class="description">关注者</div>
+    </div>
+  </div>
+  <div class="item">
+    <div class="content">
+      <%= link_to user.followed_users.count, followed_user_path(user.username), :class => "header", :id => "followed-#{user.id}-count" -%>
+      <div class="description">关注</div>
+    </div>
+  </div>
+</div>

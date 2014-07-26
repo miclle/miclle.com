@@ -1,0 +1,15 @@
+<%
+  version = case style
+  when :large then :large
+  when :wide then :medium
+  when :high then :medium
+  when :small then :small
+  end
+%>
+<div class="artwork <%= style -%>">
+  <%= link_to image_tag("grey.gif", :alt => photo.name, "data-original" => photo.send(version)), photo, :class => "preview" %>
+  <div class="extra">
+    <div class="caption"><%= photo.name %></div>
+    <div class="timeago"><%= timeago_tag photo.created_at, :format => 'zh-CN', :lang => 'zh-CN', :title => photo.created_at %></div>
+  </div>
+</div>

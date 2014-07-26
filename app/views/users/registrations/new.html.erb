@@ -1,0 +1,39 @@
+<div class="container">
+
+  <div class="subscribe">
+    <div class="subscribe-wrapper">
+      <div class="subscribe-form">
+
+        <div class="stripes top"></div>
+
+        <div class="subscribe-space">
+          <h4><span>账户注册</span> <%= link_to raw("<i class=\"home icon\"></i>"), root_path %></h4>
+
+          <p>已经是miclle.com的用户了？直接<%= link_to "登录", new_session_path(resource_name) %>吧！</p>
+
+          <hr />
+
+          <%= simple_form_for resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "no-label"} do |f| %>
+
+            <%= f.error_notification %>
+
+            <%= f.input :username, :required => true, :placeholder => "用户名，用来登录", :input_html => { :tabindex => 1, :class => "popup", "data-content" => "字母、数字和下划线."} %>
+
+            <%= f.input :email, :required => true, :placeholder => "邮箱，用来找回密码 / 接收通知", :input_html => { :tabindex => 2} %>
+
+            <%= f.input :password, :required => true, :placeholder => "密码，8个以上的字符", :input_html => { :tabindex => 3} %>
+
+            <%#= f.input :invitation_code, :placeholder => "邀请码，选填", :input_html => { :tabindex => 4} %>
+
+            <%= f.button :submit, "注 册", :tabindex => 5 %>
+
+          <% end %>
+        </div>
+
+        <div class="stripes bottom"></div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

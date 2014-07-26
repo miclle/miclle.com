@@ -1,0 +1,7 @@
+<p>您好 <%= @resource.username %>!</p>
+
+<p>您的帐户已被锁定，由于在尝试不成功的登录人数过多。</p>
+
+<p>点击下面的链接来解锁您的帐户：</p>
+
+<p><%= link_to '解锁我的帐户', unlock_url(@resource, :unlock_token => @token) %></p>

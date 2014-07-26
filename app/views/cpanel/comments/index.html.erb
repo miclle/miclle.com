@@ -1,0 +1,25 @@
+<div class="ui comments">
+<% @comments.each do |comment| %>
+  <div class="comment" id="comment-<%= comment.id -%>">
+    <%= link_to image_tag(gravatar(comment.user.email, :size => 48), :class => "rounded ui image"), "#", :class => "avatar" %>
+    <div class="content">
+      <%= link_to comment.user.name, homepage_user_path(comment.user.username), :class => "author" %>
+      <div class="metadata">
+        <div class="date"><%= datetime_format comment.created_at -%></div>
+      </div>
+      <div class="text"><%= comment.content %></div>
+      <div class="actions">
+        <!-- <a class="reply">Reply</a> -->
+        <%= link_to "删除",
+          comment_path(comment),
+          :method => :delete,
+          :remote => true,
+          :data => {:disable_with => "正在删除..."},
+          :class => "delete" if comment.belong?(current_user) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui divider"></div>
+<% end -%>
+</div>

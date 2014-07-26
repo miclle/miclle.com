@@ -1,0 +1,433 @@
+// .template.success{ background-color: #6ECFF5; }
+// .template.error  { background-color: #EF4D6D; }
+// .template.active { background-color: #EBEBEB; }
+
+
+/*
+ * jQuery File Upload UI Plugin CSS 8.8.1
+ * https://github.com/blueimp/jQuery-File-Upload
+ *
+ * Copyright 2010, Sebastian Tschan
+ * https://blueimp.net
+ *
+ * Licensed under the MIT license:
+ * http://www.opensource.org/licenses/MIT
+ */
+
+/*--------------
+  fileinput button
+----------------*/
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  transform: translate(-300px, 0) scale(4);
+  font-size: 23px;
+  direction: ltr;
+  cursor: pointer;
+}
+.fileupload-buttonbar .btn,
+.fileupload-buttonbar .toggle {
+  margin-bottom: 5px;
+}
+.progress-animated .progress-bar,
+.progress-animated .bar {
+  // background: url(../img/progressbar.gif) !important;
+  filter: none;
+}
+.fileupload-loading {
+  float: right;
+  width: 32px;
+  height: 32px;
+  // background: url(../img/loading.gif) center no-repeat;
+  // background-size: contain;
+  display: none;
+}
+.fileupload-processing .fileupload-loading {
+  display: block;
+}
+
+#drag-or-browse{
+  padding: 200px 0;
+}
+
+
+.template{
+  float: left;
+  width: 280px;
+  height: 230px;
+  margin: 10px;
+  padding: 0px;
+  overflow: hidden;
+  position: relative;
+  background-color: #FFF;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow:    0 1px 1px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  box-shadow:         0 1px 1px rgba(0, 0, 0, 0.15);
+  .cancel{ cursor: pointer;}
+  .preview{
+    display: block;
+    height: 192px;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    -webkit-border-top-left-radius: 2px;
+    -webkit-border-top-right-radius: 2px;
+    -moz-border-radius-topleft: 2px;
+    -moz-border-radius-topright: 2px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    img{
+      width: 280px;
+      top: -44.5px;
+      cursor: asset_url('magnify.cur');
+      cursor: -webkit-zoom-in;
+      cursor: -moz-zoom-in;
+      position: relative;
+    }
+  }
+  .exif{
+    height: 38px;
+    position: relative;
+    .caption{
+      position: absolute;
+      padding-left: 5px;
+      left: 0;
+      right: 85px;
+      line-height: 38px;
+      color: #888;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .extra{
+      float: right;
+      width: 75px;
+      margin-right: 5px;
+      line-height: 38px;
+      color: #808080;
+      text-align: right;
+    }
+    .ui.progress{
+      position: absolute;
+      bottom: 0;
+      border: none;
+      width: 100%;
+      height: 5px;
+      background-color: transparent;
+      padding: 0px;
+      border-radius: 0;
+    }
+  }
+}
+
+
+.artwork{
+  float: left;
+  margin: 10px;
+  padding: 0px;
+  overflow: hidden;
+  position: relative;
+  background-color: #FFF;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+
+  .extra{
+    height: 38px;
+    position: relative;
+
+    .caption{
+      position: absolute;
+      padding-left: 5px;
+      left: 0;
+      right: 85px;
+      line-height: 38px;
+      color: #888;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .timeago{
+      float: right;
+      width: 75px;
+      margin-right: 5px;
+      line-height: 38px;
+      color: #808080;
+      text-align: right;
+    }
+  }
+
+  .preview{
+    display: block;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    -webkit-border-top-left-radius: 2px;
+    -webkit-border-top-right-radius: 2px;
+    -moz-border-radius-topleft: 2px;
+    -moz-border-radius-topright: 2px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+
+    img{
+     cursor: asset_url('magnify.cur');
+     cursor: -webkit-zoom-in;
+     cursor: -moz-zoom-in;
+     position: relative;
+    }
+  }
+
+}
+
+.artwork.large{
+  width: 580px; height: 480px;
+  .preview{
+    height: 440px;
+    img{ width: 580px; top: -70px; }
+  }
+}
+
+.artwork.xsmall{
+  width: 125px; height: 100px; margin: 5px;
+  .preview{
+    height: 100px;
+    img{ width: 100%; top: -15px;}
+  }
+  &:first-child{
+    margin-left: 0;
+  }
+  &:last-child{
+    margin-right: 0;
+  }
+}
+
+.artwork.small{
+  width: 280px; height: 230px;
+  .preview{
+    height: 191px;
+    img{ width: 280px; top: -44.5px; }
+  }
+}
+
+.artwork.high{
+  width: 280px; height: 480px;
+  .preview{
+    height: 440px;
+    img{ height: 440px; left: -80px; }
+  }
+}
+
+.artwork.wide{
+  width: 580px; height: 230px;
+  .preview{
+    height: 191px;
+    img{ width: 580px; top: -194.5px; }
+  }
+}
+
+.tube{
+  padding: 0px 10px 10px 10px;
+  text-align: center;
+  position: relative;
+  img{
+    max-width: 100%;
+    max-height: 800px;
+  }
+  .mask{
+    position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+  }
+}
+
+.photo.actions{
+  text-align: center;
+  .social-share-button{
+    padding: 3px 3px 1px 3px;
+  }
+}
+
+.ui.dimmable.dimmed{
+  &.photos-show{
+    overflow: hidden;
+    .ui.dimmer{
+      background-color: #000;
+    }
+  }
+  .tube{
+    width: 100%;
+    position: fixed;
+    top: 60px;
+    bottom: 30px;
+    z-index: 999;
+    img{
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+  .photo.actions{
+    width: 50%;
+    height: 40px;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    text-align: right;
+    background: #000;
+    .ui.mini.button {
+      font-size: 1rem;
+    }
+    .social-share-button{
+      padding: 3px 3px 1px 3px;
+    }
+  }
+  .vcard.mini{
+    width: 50%;
+    height: 50px;
+    padding: 5px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    color: #EFEFEF;
+    background: #000;
+  }
+}
+
+
+.activity{
+  padding: 10px;
+}
+
+.meta.info{
+  height: auto; overflow: hidden;
+  .tabs{
+    padding-bottom: 10px;
+    .tab{
+      font-weight: 700; cursor: pointer;
+      &.active{ color: #666; cursor: default; }
+    }
+  }
+  .tab-content{
+    .pane{
+      display: none;
+      &.active{ display: block;}
+    }
+  }
+  dl{
+    float: left; margin: 0; padding: 0;
+    dt, dd{ float: left; margin: 0; padding: 2px 5px 2px 0; }
+    dt{ width: 65px; font-weight: 500; text-align: right; background-color: #F8F8F8; }
+    dd{ min-width: 120px; margin: 0 5px; color: #666; }
+  }
+  .ui.label.red{
+    padding: 2px 5px; font-size: 12px;
+  }
+}
+
+.user.info.thumb{
+  margin-bottom: 10px;
+}
+
+
+#photo-form{
+  margin: 0;
+  padding: 50px 0 0 0;
+  border: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  -webkit-border-radius: none;
+  -moz-border-radius: none;
+  border-radius: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+/*--------------
+  Photo upload preview
+----------------*/
+#photo-preview-container{ min-height: 500px; position: relative; }
+
+#display-loader{ display: none;}
+
+#photo-preview{ text-align: center;}
+
+#fileupload-buttonbar{ margin: 10px auto; }
+#fileupload-buttonbar .buttons{ float: right;}
+#fileupload-buttonbar button{ margin-top: 0;}
+#photo-size{ display: none; float: left; }
+
+.ui.grid .details{ }
+.ui.form .details .field{ margin-bottom: 8px;}
+
+.ui.form .details label,
+.ui.form .details .inline.field > label,
+.ui.form .details .field > label{
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0em 0em 0.3em;
+}
+.ui.form .details .inline.field > input { width: 100%; }
+.ui.form .details select{ padding: 9px 12px;}
+.ui.form .details textarea{ height: 170px;}
+
+.map-wrapper{ height: 300px;}
+.map-wrapper.disabled-map{ background: asset_url('disabled-map.jpg') left top no-repeat;}
+.geocoder-box{}
+.geocoder-box .search-control{
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  background-color: #FFF;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  text-align: center;
+  cursor: pointer;
+}
+.geocoder-box .search-control i.icon.search{ margin-left: 0;}
+.geocoder-box .search-box{ display: none; float: left; margin-left: -1px;}
+.geocoder-box .search-box input[type="text"].search-input{
+  min-width: 150px;
+  padding: 3px 5px 2px 5px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.geocoder-box .search-box input[type="text"].search-input:focus{
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.shortcuts{
+  margin: 30px 0;
+  text-align: center;
+  font-size: 12px;
+  color: #777;
+  .item{ display: inline-block; margin-right: 5px;}
+  .ui.label{ min-width: 18px; padding: 0.2em 0.4em; text-align: center;}
+}
+
+

@@ -1,0 +1,41 @@
+<table class="ui celled table segment">
+  <thead>
+    <tr>
+      <th>Avatar</th>
+      <th>Name</th>
+      <th>Username</th>
+      <th>E-mail</th>
+      <th>Photos</th>
+      <th>Created</th>
+      <th>Role</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+    <tr>
+      <td>
+        <%= link_to image_tag(user.avatar.url(:thumb), :class => "rounded ui image"), cpanel_user_path(user), :class => "avatar" %>
+      </td>
+      <td><%= user.attributes['name'] %></td>
+      <td><%= link_to user.username, cpanel_user_path(user) %></td>
+      <td><%= user.email %></td>
+      <td><%= link_to user.photos.size, homepage_user_path(user.username), :target => "_blank" %></td>
+      <td><%= datetime_format user.created_at %></td>
+      <td><%= user.role %></td>
+    </tr>
+    <% end %>
+  </tbody>
+
+  <!-- <tfoot>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </tfoot> -->
+</table>
+
+<%= paginate @users %>

@@ -1,0 +1,71 @@
+
+<% key = SecureRandom.uuid_short %>
+
+<div class="container clearfix">
+
+  <form accept-charset="UTF-8" action="http://up.qbox.me/upload" class="text align center clearfix" enctype="multipart/form-data" id="fileupload" method="post">
+    <input type="hidden" name="auth" value="<%= @upload_token -%>" />
+
+    <div class="fileupload-buttonbar" id="drag-or-browse">
+      <h2>把相片拖放到这里即可上传</h2>
+      <p>或</p>
+      <span class="ui blue massive button fileinput-button" id="fileinput-button">
+        <i class="icon plus"></i><span>从您的电脑中选择照片</span>
+        <input accept="image/jpg, image/jpeg" data-sequential-uploads="true" id="photo-image" multiple="multiple" name="file" type="file">
+      </span>
+    </div>
+
+    <div class="fileupload-loading"></div>
+  </form>
+
+  <div class="ui items files"></div>
+
+  <div class="text align center hide" id="action-button-bar">
+    <div class="ui clearing divider"></div>
+    <%= link_to icon(:photo) + "查看所有已上传的照片", homepage_user_url(current_user.username), :class => "ui button blue", :id => "homepage-button" %>
+  </div>
+</div>
+
+<% content_for :footer do %>
+
+<script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+  <div class="template template-upload fade">
+    {% if (!i) { %}
+    <div class="cancel ui corner label icon"><i class="trash icon"></i></div>
+    {% } %}
+    <div class="preview">
+    {% if (file.error) { %}
+      <div class="error"><span class="label label-important">{%=file.error%}</span> {%= file.error%}</div>
+    {% } %}
+    </div>
+    <div class="exif">
+      <div class="caption">{%=file.name%}</div>
+      <div class="extra">{%=o.formatFileSize(file.size)%}</div>
+      <div class="ui striped progress green progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="bar" style="width:0%;"></div></div>
+    </div>
+  </div>
+{% } %}
+</script>
+
+<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+  <div class="template template-download fade">
+    <div class="preview">
+    {% if (file.error) { %}
+      <span class="">上传失败！</span>
+    {% } %}
+    {% if (file.image) { %}
+      <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery" target="_blank"><img src="{%=file.image%}" alt="{%=file.name%}" /></a>
+    {% } %}
+    </div>
+    <div class="exif">
+      <div class="caption">{%=file.name%}</div>
+      <div class="extra"><i class="checkmark red icon"></i></div>
+    </div>
+  </div>
+{% } %}
+</script>
+
+<%= javascript_include_tag "upload" %>
+<% end -%>

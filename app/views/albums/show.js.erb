@@ -1,0 +1,4 @@
+var option = $('<option></option>');
+    option.val(<%= @album.id -%>).text('<%= @album.name -%>');
+$('option[value="add-set"]').before(option);
+option.attr('selected', 'selected');

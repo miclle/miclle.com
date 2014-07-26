@@ -1,0 +1,67 @@
+.thumb-carousel {
+  height: 54px;
+  overflow:hidden;
+}
+.thumb-carousel .viewport {
+  float: left;
+  width: 378px;
+  height: 54px;
+  overflow: hidden;
+  position: relative;
+}
+.thumb-carousel .control {
+  display: block;
+  float: left;
+  width: 20px;
+  height: 50px;
+  margin: 2px 3px 0 0;
+  line-height: 50px;
+  background-color: #B9C1C7;
+  color: #FFF;
+  text-align: center;
+  text-decoration: none;
+}
+.thumb-carousel .control.next { margin: 2px 0 0 3px; }
+.thumb-carousel .control i.icon{ margin: 0;}
+.thumb-carousel .control.disable {
+  cursor: not-allowed;
+  /*cursor: no-drop;*/
+}
+.thumb-carousel .overview {
+  height: 54px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  position: absolute;
+  top: 0;
+  z-index: 9;
+}
+.thumb-carousel .overview li{
+  float: left;
+  width: 50px;
+  height: 50px;
+  padding: 1px;
+  border: 1px solid #FFF;
+}
+.thumb-carousel .overview li.active{
+  border-color: #666;
+  z-index: 99;
+}
+.thumb-carousel .overview li a{ display: inline-block; width: 50px; height: 50px; overflow: hidden;}
+.thumb-carousel .overview li img{
+  width: 50px;
+  height: 50px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+  opacity: 0.7;
+  -webkit-transition: all 0.15s ease-out;
+  -webkit-transition-delay: 0s;
+  -moz-transition: all 0.15s ease-out 0s;
+  -o-transition: all 0.15s ease-out 0s;
+  transition: all 0.15s ease-out 0s;
+}
+.thumb-carousel .overview li.active img,
+.thumb-carousel .overview li img:hover{
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+

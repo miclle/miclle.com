@@ -1,0 +1,11 @@
+<%=
+  link_to unfollow_user_path(user),
+    :remote => true,
+    :method => :post,
+    :class => "ui basic button mini following",
+    :id => "follow-#{user.id}",
+    "data-disable-with" => "请稍候...",
+    "data-over" => '<i class="remove icon"></i>取消关注' do
+%>
+  <i class="checkmark icon"></i>已关注
+<% end %>

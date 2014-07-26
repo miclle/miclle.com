@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Miclle</title>
+  <%= csrf_meta_tags %>
+  <meta charset="UTF-8" />
+  <%= stylesheet_link_tag "screensaver", media: "all" %>
+  <style type="text/css">
+    body{
+      background-image: url(<%= @photo.xlarge -%>);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="photo-details">
+    <h3><%= link_to @photo.name, @photo %>©<%= link_to "#{@photo.user.nickname}", homepage_user_path(@photo.user.username) -%></h3>
+  </div>
+
+  <%= render "shared/footer" %>
+
+  <%= javascript_include_tag "screensaver" %>
+</body>
+</html>

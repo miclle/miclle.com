@@ -1,0 +1,5 @@
+<% likes = likeable.like_users.count -%>
+
+<%= link_to likes_path(likeable.class.to_s.downcase, likeable.id), :class => "ui mini button", :remote => true, :method => :post, :id => "like-button" do %>
+  <i class="thumbs up outline icon"></i>赞 <%= likes if likes > 0 %>
+<% end %>

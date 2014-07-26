@@ -1,0 +1,77 @@
+<div class="ui grid">
+  <div class="left floated ten wide column">
+
+    <div class="profile vcard">
+      <%= link_to image_tag(@user.avatar, :class => "rounded ui image"), homepage_user_path(@user.username), :class => "avatar" %>
+
+      <h2><%= link_to @user.nickname, homepage_user_path(@user.username) %></h2>
+
+      <ul class="details">
+        <% unless @user.city.blank? %>
+        <li>
+          <%= link_to "#", :class => "locality" do %><!-- /photographer?location=Shanghai -->
+            <i class="map marker icon"></i><%= @user.city %>
+          <% end %>
+        </li>
+        <% end -%>
+
+        <% unless @user.website.blank? %>
+        <li>
+          <%= link_to @user.website, :class => "url", :target => "_blank" do %>
+            <i class="globe icon"></i><%= @user.website %>
+          <% end %>
+        </li>
+        <% end -%>
+
+        <% unless @user.twitter.blank? %>
+        <li>
+          <%= link_to "https://twitter.com/#{@user.twitter}", :class => "twitter-player-link", :target => "_blank" do %>
+            <i class="twitter icon"></i><%= @user.twitter %>
+          <% end %>
+        </li>
+        <% end -%>
+
+        <% unless @user.weibo.blank? %>
+        <li>
+          <%= link_to "http://weibo.com/#{@user.weibo}", :class => "weibo-player-link", :target => "_blank" do %>
+            <i class="weibo icon"></i><%= @user.weibo %>
+          <% end %>
+        </li>
+        <% end -%>
+      </ul>
+
+      <% if user_signed_in? %>
+      <div class="actions">
+      <% if @user == current_user %>
+        <%= link_to account_path, :class => "ui basic button mini" do %>
+          <i class="pencil icon"></i>编辑你的账户
+        <% end %>
+      <% else %>
+        <%= user_follow_button @user %>
+
+        <%#= link_to "#", :class => "ui basic button mini" do %>
+          <!-- <i class="mail outline icon"></i>消息 -->
+        <%# end %>
+      <% end %>
+      </div>
+      <% end %>
+
+    </div>
+
+  </div>
+
+  <div class="right floated four wide column aligned">
+
+    <%= render 'users/shared/statistics', :user => @user %>
+
+    <div class="ui  divider"></div>
+
+    <div class="ui relaxed horizontal divided list">
+      <div class="item">
+        <div class="content">
+          <div class="description">加入日期: <%= @user.created_at.strftime("%Y年%m月%d日") %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

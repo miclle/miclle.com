@@ -1,0 +1,136 @@
+<% content_for :footer do %>
+  <%= javascript_include_tag "photos" %>
+<% end -%>
+
+
+<div class="tube">
+  <%= image_tag @photo.xlarge, :alt => @photo.name %>
+  <div class="mask"></div>
+</div>
+
+<div class="photo actions">
+  <div class="ui basic buttons">
+    <%= like_button @photo %>
+
+    <%= favorite_button @photo %>
+
+    <div class="ui top right pointing dropdown mini button">
+      <i class="share icon"></i>
+      <div class="menu">
+        <%= social_share_button_tag "我在Miclle上发现一张照片：#{@photo.name} #{photo_url(@photo)}", :image => @photo.xlarge %>
+      </div>
+    </div>
+
+    <!-- <span data-dr-code="<%= photo_url(@photo) -%>"></span> -->
+
+    <div class="ui mini button" id="light-box-open" title="在灯箱中查看" data-rel="#photo-modal">
+      <i class="resize full icon"></i>
+    </div>
+
+    <div class="ui mini button hide" id="light-box-close" data-rel="#photo-modal">
+      <i class="resize small icon"></i>
+    </div>
+
+    <%= link_to raw("<i class=\"edit icon\"></i>编辑"), edit_photo_path(@photo), :class => "ui mini button" if @photo.user == current_user %>
+  </div>
+
+</div>
+
+<div class="container clearfix activity">
+  <div class="ui grid">
+    <div class="ten wide column">
+
+      <div class="vcard mini">
+        <%= link_to image_tag(@photo.user.avatar.url(:thumb), :class => "rounded ui image"), homepage_user_path(@photo.user.username), :target => "_blank", :class => "avatar" %>
+        <%= content_tag :h2, @photo.name, :title => @photo.name %>
+        <h3>
+          <%= link_to @photo.user.nickname, homepage_user_path(@photo.user.username), :class => "header" %>
+          <%= user_follow_button @photo.user %>
+        </h3>
+      </div>
+
+      <h4 class="ui header">照片描述:</h4>
+      <div class="description">
+        <% if @photo.description.blank? %>
+        <i class="frown icon"></i>没有留下任何描述信息!
+        <% else %>
+        <%= @photo.description -%>
+        <% end %>
+      </div>
+
+      <% unless @photo.tags.blank? %>
+      <p>标签:
+      <% @photo.tags.each do |tag| %>
+        <span class="ui label small teal"><%= tag.name %></span>
+      <% end %>
+      </p>
+      <% end %>
+
+    </div>
+
+    <div class="six wide column">
+      <div class="meta info">
+
+        <div class="tabs">
+          <a class="tab details active" href="#details" data-toggle="tab">照片信息</a>
+          <% unless @photo.latitude.blank? or @photo.longitude.blank? %>
+          <span class="separator">/</span>
+          <a class="tab location" href="#location" data-toggle="tab">地理位置</a>
+          <% end %>
+        </div>
+
+        <div class="tab-content">
+          <div class="pane active clearfix" id="details">
+            <%= render "meta", :photo => @photo %>
+          </div>
+
+          <% unless @photo.latitude.blank? or @photo.longitude.blank? %>
+          <div class="pane" id="location">
+            <%= image_tag google_staticmap_url(@photo.latitude, @photo.longitude, 12, 425, 200) %>
+          </div>
+          <% end -%>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="ui grid">
+    <div class="ten wide column">
+      <h4 class="ui header">评论(<%= @photo.comments.size -%>)</h4>
+      <div class="ui comments">
+        <%= render :partial => "/comments/form", :locals => { :entity => @photo} %>
+        <%= render :partial => "/comments/comment", :collection => @photo.comments %>
+      </div>
+    </div>
+
+    <div class="six wide column">
+      <h4 class="ui header"><%= @photo.user.nickname %> 的其他照片</h4>
+      <div class="thumb-carousel" data-toggle="thumb-carousel">
+        <a class="control prev" href="#prev-group"><i class="triangle left icon"></i></a>
+        <div class="viewport">
+          <ul class="overview">
+            <% @photo.siblings.each do |photo| %>
+              <li <%== "#{"class=\"active\"" if photo.id == @photo.id}" -%>>
+                <%= link_to image_tag(photo.thumb, :alt => photo.name, :class => "photo"), photo_path(photo), :id => "photo-#{photo.id}" %>
+              </li>
+            <% end -%>
+          </ul>
+        </div>
+        <a class="control next" href="#next-group"><i class="triangle right icon"></i></a>
+      </div>
+
+      <div class="shortcuts">
+        <span class="item"><span class="ui label small">l</span>赞</span>
+        <span class="item"><span class="ui label small">f</span>收藏</span>
+        <span class="item"><span class="ui label small">h</span>灯箱</span>
+        <span class="item"><span class="ui label small"><i class="triangle left icon"></i></span>上一张</span>
+        <span class="item"><span class="ui label small"><i class="triangle right icon"></i></span>下一张</span>
+      </div>
+
+    </div>
+  </div>
+</div>

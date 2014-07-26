@@ -1,0 +1,93 @@
+body.welcome-page{
+
+  nav.ui.inverted.menu{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    background-color: #111;
+    background-color: rgba(0, 0, 0, 0.5);
+    background: asset_url('iefallbacktrans.png') repeat scroll \6;
+  }
+
+  .photograph{
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    max-width: 100%;
+    // min-height: 300% !important;
+    min-height: 500px;
+    // background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    -webkit-box-shadow: 0px 80px 80px -80px rgba(0, 0, 0, 0.25) inset,0px -214px 214px -214px rgba(0, 0, 0, 0.6) inset;
+    -moz-box-shadow: 0px 80px 80px -80px rgba(0,0,0,0.25) inset,0px -214px 214px -214px rgba(0,0,0,0.6) inset;
+    box-shadow: 0px 80px 80px -80px rgba(0, 0, 0, 0.25) inset,0px -214px 214px -214px rgba(0, 0, 0, 0.6) inset;
+    -webkit-font-smoothing: antialiased;
+    .hero-section{
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      margin-top: -250px;
+      .slogan{
+        margin-bottom: 50px;
+        text-align: center;
+        color: #FDFDFD;
+        font-weight: bold;
+        // text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.4);
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
+        -webkit-transition: none;
+        -moz-transition: none;
+        -o-transition: none;
+        transition: none;
+        h1{ font-size: 52px; line-height: 52px; border: none;}
+        h3{ font-size: 22px; line-height: 22px; border: none;}
+      }
+      form{
+        width: 900px;
+        margin: 0 auto;
+        background-color: #E2E7EA;
+        background-color: rgba(226, 231, 234, 0.2);
+        box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.2);
+        text-align: center;
+
+        .inline.fields .field{
+          margin: 0 0.5em 0 0;
+          &:last-child{ margin-right: 0;}
+          input{ width: 255px;}
+        }
+      }
+    }
+    .photo-details{
+      padding: 10px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      z-index: 2;
+      &, a{
+        color: #FFF;
+        color: rgba(225, 225, 225, 0.8);
+      }
+      h3{ margin: 0; padding: 0;}
+    }
+  }
+
+  footer{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+    color: #FFF;
+    .ui.link.list .item{
+      color: #FFF;
+      color: rgba(225, 225, 225, 0.8);
+      font-size: 12px;
+    }
+  }
+
+}

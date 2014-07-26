@@ -1,0 +1,21 @@
+<% if user_signed_in? %>
+
+<%= form_for [entity, Comment.new], :html => { :class => "ui reply form clearfix", :id => "#{entity.class.to_s.downcase}-#{entity.id}-comment-form"}, :remote => true do |f| %>
+  <div class="field">
+    <%= f.text_area :content, :id => nil, :class => "comment-body" %>
+  </div>
+  <button type="submit" class="ui button teal submit labeled icon">
+    <i class="icon edit"></i> 提交评论
+  </button>
+<% end %>
+
+<% else %>
+
+<div class="ui reply form clearfix">
+  <div class="ui disabled segment">
+    <p>您需要<%= link_to "登录", new_user_session_path -%>后才可以评论</p>
+  </div>
+  <button disabled class="disabled ui button teal submit labeled icon"><i class="icon edit"></i> 提交评论</button>
+</div>
+
+<% end -%>

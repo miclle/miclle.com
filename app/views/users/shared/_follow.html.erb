@@ -1,0 +1,10 @@
+<%=
+  link_to follow_user_path(user),
+    :remote => true,
+    :method => :post,
+    :class => "ui basic button mini follow",
+    :id => "follow-#{user.id}",
+    "data-disable-with" => "请稍候..." do
+%>
+  <i class="add icon"></i>关注TA
+<% end %>

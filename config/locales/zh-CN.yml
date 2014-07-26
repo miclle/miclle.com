@@ -1,0 +1,42 @@
+'zh-CN':
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            username:
+              taken: '用户名已经被注册'
+              invalid: '用户名不能为空, 且只允许字母、数字和下划线'
+              too_short: '用户名太短! 3～20个字符'
+              too_long:  '用户名太长! 3～20个字符'
+              exclusion: '此用户名不能被注册'
+            email:
+              blank: '邮箱不能为空'
+              taken: '该邮箱已注册'
+              invalid: '邮箱格式不正确'
+            password:
+              blank: '密码不能为空'
+              too_short: '密码太短! 至少8个字符'
+              too_long: '密码太长! 小于128个字符'
+            password_confirmation:
+              confirmation: '两次密码不一致'
+            reset_password_token:
+              invalid: '无效的令牌'
+            confirmation_token:
+              invalid: '无效的令牌'
+  views:
+    pagination:
+      first: "&laquo; 第一页"
+      last: "最后一页 &raquo;"
+      previous: "&lsaquo; 上一页"
+      next: "下一页 &rsaquo;"
+      truncate: "..."
+    photo:
+      version:
+        thumb:    "微型"
+        small:    "小型"
+        medium:   "中型"
+        large:    "大型"
+        olarge:   "大型(原始比例)"
+        oxlarge:  "超大型(原始比例)"
+        original: "原图"

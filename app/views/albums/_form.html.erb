@@ -1,0 +1,13 @@
+<%= simple_form_for(@album) do |f| %>
+
+  <%= f.error_notification %>
+
+    <%= f.input :user_id %>
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :photo_count %>
+    <%= f.input :privacy %>
+
+  <%= f.button :submit %>
+
+<% end %>

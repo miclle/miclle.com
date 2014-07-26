@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Miclle</title>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag "devise", media: "all" %>
+  <%= yield :head %>
+</head>
+<body>
+
+  <%= yield %>
+
+  <%= render "shared/footer" %>
+
+  <%= javascript_include_tag "devise" %>
+</body>
+</html>

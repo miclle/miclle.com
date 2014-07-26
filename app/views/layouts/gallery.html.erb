@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Miclle</title>
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag "gallery", media: "all" %>
+</head>
+<body>
+
+  <nav class="ui inverted fixed menu">
+
+    <%= link_to raw("<b>Miclle</b>"), root_path, :class => "item title" %>
+
+    <%= link_to "所有作品", root_path, :class => "item" %>
+
+    <%= link_to "画廊", gallery_path, :class => "item" %>
+
+    <%= link_to "我的照片", homepage_user_path(current_user.username), :class => "item" if user_signed_in? %>
+
+    <%= link_to "上传", new_photo_path, :class => "item" %>
+
+    <div class="right menu">
+      <% if user_signed_in? %>
+      <div class="ui simple dropdown item">
+        <i class="icon user"></i><%= current_user.email -%>
+        <div class="theme menu">
+          <%= link_to "退出", destroy_user_session_path, :data => { :disable_with => "正在退出...", :theme => "shaded"}, :class => "item" %>
+        </div>
+      </div>
+      <% else %>
+      <%= link_to "注册", new_user_registration_path, :class => "item" %>
+      <%= link_to "登录", new_user_session_path, :class => "item" %>
+      <% end -%>
+    </div>
+  </nav>
+
+  <%= yield %>
+
+  <%= javascript_include_tag "gallery" %>
+</body>
+</html>

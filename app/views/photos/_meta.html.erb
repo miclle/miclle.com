@@ -1,0 +1,56 @@
+<% unless photo.camera.blank? %>
+<dl>
+  <dt>设备型号:</dt>
+  <dd><i class="camera icon"></i><%= photo.camera -%></dd>
+</dl>
+<% end %>
+
+<% unless photo.taken_at.blank? %>
+<dl>
+  <dt>拍摄时间:</dt>
+  <dd><i class="time icon"></i><%= datetime_format photo.taken_at, :second => true -%></dd>
+</dl>
+<% end %>
+
+<% unless photo.exposure_time.blank? %>
+<dl>
+  <dt>曝光时间:</dt>
+  <dd><%= photo.exposure_time -%>secs</dd>
+</dl>
+<% end %>
+
+<% unless photo.aperture.blank? %>
+<dl>
+  <dt>光圈:</dt>
+  <dd><%= photo.aperture -%></dd>
+</dl>
+<% end %>
+
+<% unless photo.iso.blank? %>
+<dl>
+  <dt>ISO:</dt>
+  <dd><%= photo.iso -%></dd>
+</dl>
+<% end %>
+
+<% unless photo.focal_length.blank? %>
+<dl>
+  <dt>焦距:</dt>
+  <dd><%= photo.focal_length -%></dd>
+</dl>
+<% end %>
+
+<dl>
+  <dt>分类:</dt>
+  <dd><%= Photo::CATEGORY[photo.category.to_sym] -%></dd>
+</dl>
+
+<dl>
+  <dt>上传时间:</dt>
+  <dd><%= timeago_tag photo.created_at, :format => 'zh-CN', :lang => 'zh-CN', :title => photo.created_at %></dd>
+</dl>
+
+<dl>
+  <dt>版权:</dt>
+  <dd><span class="ui red label"><i class="attention icon"></i><%= Photo::LICENSE[photo.license.to_sym] -%></span></dd>
+</dl>

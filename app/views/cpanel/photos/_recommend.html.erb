@@ -1,0 +1,13 @@
+<% if @photo.is_editor? %>
+
+<%= link_to unrecommend_cpanel_photo_path(@photo), :remote => true, :method => :post, :class => "ui button medium green", :id => "recommend-button-#{@photo.id}" do %>
+  <i class="icon remove"></i><span>取消编辑推荐</span>
+<% end %>
+
+<% else %>
+
+<%= link_to recommend_cpanel_photo_path(@photo), :remote => true, :method => :post, :class => "ui button medium green", :id => "recommend-button-#{@photo.id}" do %>
+  <i class="icon sun"></i><span>编辑推荐</span>
+<% end %>
+
+<% end -%>

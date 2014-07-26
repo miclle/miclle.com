@@ -1,0 +1,47 @@
+<div class="ui secondary pointing menu">
+
+  <%= link_to homepage_user_path(@user.username), :class => "item#{ ' active' if action_name == 'show'}" do %>
+    <i class="photo icon"></i>所有照片
+  <% end -%>
+
+  <!--
+  <a class="item">
+    <i class="folder outline icon"></i>照片集
+  </a>
+
+  <a class="item">
+    <i class="time icon"></i>时间轴
+  </a>
+  -->
+
+  <%= link_to favorites_user_path(@user.username), :class => "item#{ ' active' if action_name == 'favorites'}" do %>
+    <i class="heart empty icon"></i>最喜爱(<%= @user.favorites.count -%>)
+  <% end -%>
+
+  <!--
+  <div class="right menu">
+    <div class="item">
+      <div class="ui icon input">
+        <input type="text" placeholder="Search...">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+    <a class="ui item">
+      Logout
+    </a>
+  </div>
+  -->
+
+  <% if action_name == 'followers' or action_name == 'followed' %>
+
+  <%= link_to followers_user_path(@user.username), :class => "item#{' active' if action_name == 'followers'}" do %>
+    <i class="users icon"></i>关注者(<%= @user.followers.count -%>)
+  <% end -%>
+
+  <%= link_to followed_user_path(@user.username), :class => "item#{' active' if action_name == 'followed'}" do %>
+    <i class="unhide icon"></i>关注(<%= @user.followed_users.count -%>)
+  <% end -%>
+
+  <% end -%>
+
+</div>

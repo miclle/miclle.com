@@ -1,0 +1,31 @@
+<div class="vcard">
+  <%= link_to image_tag(user.avatar.url(:small), :class => "rounded ui image"), homepage_user_path(user.username), :target => "_blank", :class => "avatar" %>
+
+  <h2><%= link_to user.nickname, homepage_user_path(user.username) %></h2>
+
+  <ul class="details">
+    <% unless user.city.blank? %>
+    <li>
+      <%= link_to "#", :class => "locality" do %><!-- /photographer?location=Shanghai -->
+        <i class="map marker icon"></i><%= user.city %>
+      <% end %>
+    </li>
+    <% end -%>
+  </ul>
+
+  <div class="ui relaxed horizontal divided list">
+    <div class="item">
+      <div class="content">
+        <%= link_to user.followers.count, followers_user_path(user.username), :class => "header", :id => "followers-#{user.id}-count" -%>
+        <div class="description">关注者</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="content">
+        <%= link_to user.followed_users.count, followed_user_path(user.username), :class => "header", :id => "followed-#{user.id}-count" -%>
+        <div class="description">关注</div>
+      </div>
+    </div>
+
+  </div>
+</div>

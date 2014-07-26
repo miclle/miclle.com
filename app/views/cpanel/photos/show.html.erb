@@ -1,0 +1,146 @@
+<div class="ui breadcrumb">
+  <%= link_to "照片", cpanel_photos_path, :class => "section" %>
+  <i class="right arrow icon divider"></i>
+  <div class="active section">照片详细信息</div>
+</div>
+
+
+<% content_for :footer do %>
+<!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyABtlG981opYvGjGse0RJOS3xIgNnNY30c&libraries=places&sensor=true"></script> -->
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=true"></script>
+<% end -%>
+
+<div class="tube">
+  <%= image_tag @photo.xlarge, :alt => @photo.name, :class => "image" %>
+</div>
+
+<%= simple_form_for [:cpanel, @photo] do |f| %>
+
+  <%= f.error_notification %>
+
+  <div id="fileupload-buttonbar" class="container clearfix">
+    <span class="ui green label" id="photo-size">
+      <%= format_file_size(@photo.size) %>
+    </span>
+
+    <div class="ui label">原图尺寸:<div class="detail"><%= @photo.width %> &times; <%= @photo.height %> (px)</div></div>
+
+    <div class="buttons">
+      <%= link_to photo_path(@photo), :method => :delete, :class => "ui button medium", :data => {:confirm => '亲～ 真的要删除么？', "disable-with" => "正在删除..."} do %>
+        <i class="icon remove"></i><span>删除照片</span>
+      <% end %>
+
+      <%= render 'cpanel/photos/recommend' %>
+
+      <button type="submit" class="ui button medium blue" id="start-button" data-disable-with="正在上传...">
+        <i class="icon cloud upload"></i><span>保存更改</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="ui grid details">
+
+      <div class="four wide column">
+
+        <%= f.input :name, :label => "标题" %>
+
+        <%= f.input :camera, :label => "相机型号", :input_html => {:class => "exif", :placeholder => "eg. Canon EOS 5D Mark III"} %>
+
+        <%= f.input :taken_at, :as => :string, :label => "时间", :input_html => {:class => "exif", :placeholder => "yyyy-mm-dd hh:mm:ss"}, :disabled => true %>
+
+        <div class="ui two fields">
+          <%= f.input :exposure_time, :label => "曝光时间", :wrapper_html => { :class => "inline"}, :input_html => {:class => "exif", :placeholder => "eg. 1/30"}, :disabled => true %>
+
+          <%= f.input :aperture, :label => "光圈", :wrapper_html => { :class => "inline"}, :input_html => {:class => "exif", :placeholder => "eg. 11"}, :disabled => true %>
+        </div>
+
+        <div class="ui two fields">
+          <%= f.input :iso, :label => "ISO", :wrapper_html => { :class => "inline"}, :input_html => {:class => "exif", :placeholder => "eg. 200"}, :disabled => true %>
+
+          <%= f.input :focal_length, :label => "焦距", :wrapper_html => { :class => "inline"}, :input_html => {:class => "exif", :placeholder => "eg. 17"}, :disabled => true %>
+        </div>
+
+        <div class="field photo-place disabled">
+          <label>摄影集</label>
+          <div class="ui left labeled icon select">
+            <%= f.select :album_id, @photo.user.albums.map { |a| [a.name, a.id] } + [['创建影集','add-set']], { include_blank: "选择一个影集" }, :id => "photo-set", :disabled => true %>
+            <i class="icon sort"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="six wide column">
+
+        <%= f.input :description, :label => "描述", :input_html => {:class => "exif", :placeholder => "eg. 描述"} %>
+
+        <div class="field">
+          <label>分类</label>
+          <div class="ui left labeled icon select">
+            <%= f.select :category, Photo::CATEGORY_INVERT %>
+            <i class="icon sort"></i>
+          </div>
+        </div>
+
+        <div class="field disabled">
+          <label>版权</label>
+          <div class="ui left labeled icon select">
+            <%= f.select :license, Photo::LICENSE_INVERT, {}, :disabled => true %>
+            <i class="icon sort"></i>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>隐私</label>
+          <div class="ui left labeled icon select">
+            <i class="icon sort"></i>
+            <%= f.select :privacy, Photo::PRIVACY_INVERT %>
+          </div>
+        </div>
+
+        <%= f.input :tag_list, :label => "标签", :input_html => {:id => "photo-tags"} %>
+      </div>
+
+      <div class="six wide column">
+        <div class="field map">
+          <label>地图</label>
+          <%= f.hidden_field :latitude,  :class => "exif" %>
+          <%= f.hidden_field :longitude, :class => "exif" %>
+          <div class="map-wrapper disabled-map" id="map"></div>
+        </div>
+
+        <div class="field">
+          <div class="ui checkbox">
+            <%= f.check_box :is_adult_content %>
+            <%= f.label :is_adult_content do %>
+            <span>成人内容</span> <small>(将不会出现在公共页面中)</small>
+            <% end -%>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+<% end %>
+
+<div class="ui tiny buttons">
+  <% unless @previous.nil? %>
+  <%= link_to "上一张", cpanel_photo_path(@previous), :class => "ui positive button previous" %>
+  <% else %>
+  <div class="ui positive disabled button">上一张</div>
+  <% end -%>
+
+  <div class="or"></div>
+
+  <% unless @next.nil? %>
+  <%= link_to "下一张", cpanel_photo_path(@next), :class => "ui negative button next" %>
+  <% else %>
+  <div class="ui negative disabled button">下一张</div>
+  <% end -%>
+</div>
+
+

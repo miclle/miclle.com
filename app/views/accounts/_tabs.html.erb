@@ -1,0 +1,43 @@
+<div class="ui grid">
+
+  <div class="left floated ten wide column">
+
+    <div class="profile vcard combo">
+      <%= link_to image_tag(current_user.avatar, :class => "rounded ui image"), homepage_user_path(current_user.username), :class => "avatar" %>
+
+      <h2><%= link_to current_user.name, homepage_user_path(current_user.username) %></h2>
+
+      <%= content_tag :div, "编辑你的昵称、头像、简介..." if action_name == 'show' or action_name == 'update' %>
+      <%= content_tag :div, "修改你的密码" if action_name == 'password' %>
+      <%= content_tag :div, "阅读关于你的消息和通知" if action_name == 'notifications' %>
+    </div>
+
+  </div>
+
+  <div class="right floated aligned five wide column">
+    <%= render 'users/shared/statistics', :user => current_user %>
+  </div>
+
+</div>
+
+<div class="ui secondary pointing menu tabs">
+  <%= link_to account_path, :class => "item#{ ' active' if action_name == 'show'}" do %>
+    <i class="user icon"></i>个人资料
+  <% end %>
+
+  <%= link_to password_account_path, :class => "item#{ ' active' if action_name == 'password'}" do %>
+    <i class="key icon"></i>密码
+  <% end %>
+
+  <%= link_to notifications_account_path, :class => "item#{ ' active' if action_name == 'notifications'}" do %>
+    <i class="mail outline icon"></i>消息/通知
+  <% end %>
+
+  <div class="right menu">
+    <% if current_user.role == 'admin' %>
+    <%= link_to cpanel_root_path, :class => "item" do %>
+      <i class="dashboard icon"></i>管理后台
+    <% end %>
+    <% end -%>
+  </div>
+</div>

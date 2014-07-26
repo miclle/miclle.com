@@ -1,0 +1,34 @@
+<div class="ui basic buttons">
+  <%= link_to "编辑推荐", cpanel_photos_path(:type => :editors), :class => "ui button" %>
+  <%= link_to "未审核 (#{Photo.unaudited.count})",  cpanel_photos_path(:type => :unaudited), :class => "ui button" %>
+  <%= link_to "已审核",  cpanel_photos_path(:type => :audited), :class => "ui button" %>
+  <%= link_to "不被接受 (#{Photo.unaccepted.count})", cpanel_photos_path(:type => :unaccepted), :class => "ui button" %>
+</div>
+
+<div class="ui clearing divider"></div>
+
+<div class="photos clearfix">
+  <% @photos.each do |photo| %>
+  <div class="photo item">
+    <%= link_to cpanel_photo_path(photo), :class => "preview" do -%>
+      <%= image_tag(photo.medium, :alt => photo.name) %>
+
+      <div class="meta">
+        <h3 class="caption"><%= photo.name %></h3>
+        <div class="description"><%= photo.description %></div>
+        <div class="timeago"><%= datetime_format photo.created_at %></div>
+        <div class="extra">
+          <span class="ui label small"><i class="thumbs up outline icon"></i> <%= photo.like_users.size -%></span>
+          <span class="ui label small"><i class="heart empty icon"></i> <%= photo.favorite_users.size -%></span>
+
+          <% if photo.is_editor? %>
+            <span class="ui label small right"><i class="user icon red"></i></span>
+          <% end -%>
+        </div>
+      </div>
+    <% end -%>
+  </div>
+  <% end -%>
+</div>
+
+<%= paginate @photos %>
