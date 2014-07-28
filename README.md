@@ -82,5 +82,4 @@ redis 2.8.4
 	
 
 #License
-
-Copyright (c) 2013-2014 Miclle
+Code released under the MIT license.
